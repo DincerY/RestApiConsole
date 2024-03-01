@@ -25,7 +25,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-        // Gerekirse servis ekleyebilirsiniz.
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,7 +36,6 @@ public class Startup
 
         app.UseRouting();
 
-        // Endpoint tanımlamalarını ekleyin
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapGet("/", async context =>
@@ -47,22 +45,10 @@ public class Startup
 
             endpoints.MapGet("/api/echo", async context =>
             {
-                // Örnek bir API endpoint'i
                 await context.Response.WriteAsync("Bu bir echo endpoint'idir.");
             });
             endpoints.MapControllers();
         });
-    }
-}
-
-[ApiController]
-[Route("api/[controller]")]
-public class SampleController : ControllerBase
-{
-    [HttpGet]
-    public IActionResult Get()
-    {
-        return Ok("Bu bir örnek controller metodu.");
     }
 }
 
